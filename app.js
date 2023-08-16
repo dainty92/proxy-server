@@ -2,12 +2,17 @@ require('dotenv').config();
 const express = require('express');
 const axios = require('axios');
 const morgan = require('morgan')
+const path = require('path'); // Import the 'path' module
+const ejs = require('ejs');
 
 const app = express();
 const PORT = 3000;
 
 // Replace 'EXTERNAL_API_URL' with the URL of the 3rd party API you want to proxy
 const OPENWEATHER_API_KEY = process.env.OPENWEATHER_API_KEY;
+
+app.set('view engine', 'ejs'); // Set EJS as the view engine
+app.set('views', path.join(__dirname, 'views')); 
 
 // Enable JSON parsing for incoming requests
 app.use(express.json());
@@ -24,7 +29,8 @@ app.get('/api/weather/:city', async (req, res) => {
 
     // Check if the response from the external API is successful
     if (response.status === 200) {
-      res.json(response.data);
+      res.render('weather', { weatherData: response.data });
+      // res.json(response.data);
     } else {
       res.status(response.status).json({ error: 'External API responded with an error' });
     }

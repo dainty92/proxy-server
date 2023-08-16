@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Information</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .weather-container {
+      max-width: 600px;
+      padding: 20px;
+      background-color: #9bf4f2;
+      border-radius: 10px;
+      box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    }
+    .weather-info {
+      font-size: 26px;
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #333;
+    }
+    .weather-details {
+      font-size: 20px;
+      color: #666;
+      line-height: 2;
+      text-align: left;
+    }
+    #p {
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="weather-container">
+    <div class="weather-info">Weather in <span id="city-name"><%= weatherData.name %></span></div>
+    <div class="weather-details">
+      <span id="p">Country:</span> <span id="country"><%= weatherData.sys.country %></span><br>
+      <span id="p">Coordinate:</span> <span id="longitude"><%= weatherData.coord.lon %></span>,<span id="lat"><%= weatherData.coord.lat %></span><br> 
+      <span id="p">Temperature:</span> <span id="temp"><%= (weatherData.main.temp - 273.15).toFixed(2) %></span>°C<br>
+      <span id="p">Description:</span> <span id="description"><%= weatherData.weather[0].description %></span><br>
+      <span id="p">Humidity:</span> <span id="humidity"><%= weatherData.main.humidity %></span>%<br>
+      <span id="p">Wind Speed:</span> <span id="wind-speed"><%= weatherData.wind.speed %></span> m/s<br>
+    </div>
+  </div>
+</body>
+</html>
