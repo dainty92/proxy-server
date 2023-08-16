@@ -32,11 +32,15 @@
     .weather-details {
       font-size: 20px;
       color: #666;
-      line-height: 2;
+      line-height: 1.5;
       text-align: left;
     }
     #p {
       font-weight: bold;
+    }
+    #user-instruction {
+      color: red;
+      font-weight: 600;
     }
   </style>
 </head>
@@ -50,6 +54,9 @@
       <span id="p">Description:</span> <span id="description"><%= weatherData.weather[0].description %></span><br>
       <span id="p">Humidity:</span> <span id="humidity"><%= weatherData.main.humidity %></span>%<br>
       <span id="p">Wind Speed:</span> <span id="wind-speed"><%= weatherData.wind.speed %></span> m/s<br>
+    </div>
+    <div>
+      <p id="user-instruction">Note: Change the city name in the URL to get weather data for a different city.</p>
     </div>
   </div>
 </body>
